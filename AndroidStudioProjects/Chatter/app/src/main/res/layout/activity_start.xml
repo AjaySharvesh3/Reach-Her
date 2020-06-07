@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:background="@color/mainThemeColor"
+    tools:context=".StartActivity">
+
+
+    <TextView
+        android:id="@+id/welcomeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#fff"
+        android:fontFamily="@font/product_sans_bold"
+        android:text="Welcome to Chatter Application"
+        android:textSize="20sp"/>
+
+    <Button
+        android:id="@+id/loginButton"
+        android:background="#fff"
+        android:padding="15dp"
+        android:textColor="#000"
+        android:layout_width="200dp"
+        android:textSize="12sp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/welcomeText"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/product_sans_bold"
+        android:text="Already You're In?" />
+
+    <Button
+        android:id="@+id/registerButton"
+        android:background="#FFDE03"
+        android:padding="15dp"
+        android:textColor="#000"
+        android:layout_width="200dp"
+        android:textSize="12sp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/welcomeText"
+        android:layout_marginTop="25dp"
+        android:fontFamily="@font/product_sans_bold"
+        android:text="Need a New One?" />
+</LinearLayout>

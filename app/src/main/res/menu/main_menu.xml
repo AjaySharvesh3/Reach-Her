@@ -5,8 +5,17 @@
         android:id="@+id/action_settings_button"
         android:title="@string/action_setting_text" />
     <item
-        android:id="@+id/action_upload_history_button"
-        android:title="@string/upload_history" />
+        android:id="@+id/drive_history_button"
+        android:title="Video History" />
+    <item
+        android:id="@+id/image_history_button"
+        android:title="Image History" />
+    <item
+        android:id="@+id/file_history_button"
+        android:title="File History" />
+    <item
+        android:id="@+id/group_chat_button"
+        android:title="Community Chat" />
     <item
         android:id="@+id/action_logout_button"
         android:title="@string/action_logout_text" />

@@ -1,20 +1,39 @@
 package com.reachskyline.reachher;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Map;
 
 public class FetchDataActivity extends AppCompatActivity {
 
@@ -22,10 +41,13 @@ public class FetchDataActivity extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference ref, subRef;
     ArrayList<String> driveLinksList;
-    ArrayAdapter<String> driveLinkArrayAdapter;
+    ArrayAdapter driveLinkArrayAdapter;
     DriveLink driveLink;
     private FirebaseAuth firebaseAuth;
-    String user_id;
+    private StorageReference storageReference;
+    private FirebaseFirestore firebaseFirestore;
+    private String user_id, user_name, phone_number, name, phone;
+    private TextView noDataTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,31 +56,57 @@ public class FetchDataActivity extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
         user_id = firebaseAuth.getCurrentUser().getUid();
+        firebaseFirestore = FirebaseFirestore.getInstance();
+        storageReference = FirebaseStorage.getInstance().getReference();
+
+        user_id = firebaseAuth.getCurrentUser().getUid();
         driveLink = new DriveLink();
         listView = findViewById(R.id.listView);
         database = FirebaseDatabase.getInstance();
-//        ref = database.getReference("DriveLinks").child(user_id).child("desc");
-        ref = database.getReference();
-        //subRef = ref.child("DriveLinks").child(user_id).child("desc");
-        subRef = ref.getRoot().child("DriveLinks").child(user_id).child("desc");
-        Log.i("hi","firebase"+subRef);
+
+        noDataTextView = findViewById(R.id.noDataText);
+
         driveLinksList = new ArrayList<>();
         driveLinkArrayAdapter = new ArrayAdapter<>(this, R.layout.fetch_drive_link_data, R.id.desc, driveLinksList);
 
-        subRef.addValueEventListener(new ValueEventListener() {
+        firebaseFirestore.collection("Users").document(user_id).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for(DataSnapshot ds: dataSnapshot.getChildren()) {
-                    driveLink = ds.getValue(DriveLink.class);
-                    driveLinksList.add(driveLink.getDesc() + "   " + driveLink.getLinks());
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+            if(task.isSuccessful()){
+                if(task.getResult().exists()){
+                    name = task.getResult().getString("name");
+                    phone = task.getResult().getString("phone");
+
+                    ref = database.getReference();
+                    subRef = ref.child("UploadedDriveLinks").child(name + "_" + phone);
+
+                    subRef.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            if (dataSnapshot.getValue() == null) {
+                                noDataTextView.setVisibility(View.VISIBLE);
+                                return;
+                            }
+                            for(DataSnapshot ds: dataSnapshot.getChildren()) {
+                                JSONObject json = new JSONObject((Map) ds.getValue());
+                                try {
+                                    driveLinksList.add("Link: " + json.getString("link") + "\n" + "Description: " + json.getString("desc"));
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                            listView.setAdapter(driveLinkArrayAdapter);
+                        }
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
                 }
-
-                listView.setAdapter(driveLinkArrayAdapter);
+            } else {
+                String error = task.getException().getMessage();
+                Toast.makeText(FetchDataActivity.this, "(FIRESTORE Retrieve Error) : " + error, Toast.LENGTH_LONG).show();
             }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
             }
         });
     }

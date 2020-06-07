@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:fillViewport="true"
+    android:layout_height="match_parent"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="0dp">
+
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SetUpActivity">
@@ -15,6 +22,11 @@
         app:layout_constraintStart_toStartOf="parent"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:layout_constraintTop_toTopOf="parent"/>
+
+    <!--<androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints">-->
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/setup_image"
@@ -32,21 +44,87 @@
         android:id="@+id/setup_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="64dp"
-        android:ems="10"
-        android:drawableEnd="@drawable/ic_person_black_24dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="20dp"
         android:background="@drawable/custom_edit_text_layout"
+        android:drawableEnd="@drawable/ic_person_black_24dp"
+        android:drawableRight="@drawable/ic_person_black_24dp"
+        android:ems="10"
+        android:fontFamily="@font/product_sans_medium"
         android:hint="@string/setup_name_hint_text"
         android:inputType="textPersonName"
-        android:fontFamily="@font/product_sans_medium"
         android:padding="15dp"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/setup_image"
-        android:drawableRight="@drawable/ic_person_black_24dp" />
+        app:layout_constraintTop_toBottomOf="@+id/setup_image" />
+
+    <EditText
+        android:id="@+id/setup_phone"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/custom_edit_text_layout"
+        android:drawableEnd="@drawable/ic_phone_black_24dp"
+        android:drawableRight="@drawable/ic_phone_black_24dp"
+        android:ems="10"
+        android:fontFamily="@font/product_sans_medium"
+        android:hint="@string/phone"
+        android:inputType="phone"
+        android:padding="15dp"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setup_name" />
+
+
+    <EditText
+        android:id="@+id/setup_strength"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/custom_edit_text_layout"
+        android:drawableEnd="@drawable/ic_leak_remove_black_24dp"
+        android:drawableRight="@drawable/ic_leak_remove_black_24dp"
+        android:ems="10"
+        android:fontFamily="@font/product_sans_medium"
+        android:hint="@string/your_core_strength"
+        android:inputType="textCapWords"
+        android:padding="15dp"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setup_bio" />
+
+    <EditText
+        android:id="@+id/setup_location"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/custom_edit_text_layout"
+        android:drawableEnd="@drawable/ic_location_on_black_24dp"
+        android:drawableRight="@drawable/ic_location_on_black_24dp"
+        android:ems="10"
+        android:fontFamily="@font/product_sans_medium"
+        android:hint="@string/your_location"
+        android:inputType="textCapWords"
+        android:padding="15dp"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setup_strength" />
+
 
     <Button
         android:id="@+id/setup_btn"
@@ -54,7 +132,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="20dp"
         android:layout_marginRight="20dp"
         android:background="@drawable/custom_button_layout"
@@ -65,8 +143,31 @@
         android:textColor="@android:color/white"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/setup_name" />
+        app:layout_constraintTop_toBottomOf="@+id/setup_location" />
+
+    <EditText
+        android:id="@+id/setup_bio"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/custom_edit_text_layout"
+        android:drawableEnd="@drawable/ic_account_circle_black_24dp"
+        android:drawableRight="@drawable/ic_account_circle_black_24dp"
+        android:ems="10"
+        android:fontFamily="@font/product_sans_medium"
+        android:hint="@string/set_your_bio"
+        android:inputType="textCapWords"
+        android:padding="15dp"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setup_phone" />
 
     <ProgressBar
         android:id="@+id/setup_progress"
@@ -79,4 +180,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/setupToolbar" />
 
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="24dp"
+        android:fontFamily="@font/product_sans_black"
+        android:gravity="center_horizontal"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:text="Note: Please upload your profile picture, your username and mobile number can't be edited later once you saved. So give us a proper username, and valid mobile number."
+        android:textAlignment="center"
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setup_btn" />
+<!--    </androidx.core.widget.NestedScrollView>-->
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

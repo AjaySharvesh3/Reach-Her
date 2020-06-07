@@ -2,13 +2,13 @@ package com.reachskyline.reachher;
 
 public class DriveLink {
 
-    private String desc, links;
+    private String desc, link;
 
     public DriveLink() {}
 
-    public DriveLink(String desc, String links) {
+    public DriveLink(String desc, String link) {
         this.desc = desc;
-        this.links = links;
+        this.link = link;
     }
 
     public String getDesc() {
@@ -19,11 +19,11 @@ public class DriveLink {
         this.desc = desc;
     }
 
-    public String getLinks() {
-        return links;
+    public String getLink() {
+        return link;
     }
 
-    public void setLinks(String links) {
-        this.links = links;
+    public void setLink(String link) {
+        this.link = link;
     }
 }

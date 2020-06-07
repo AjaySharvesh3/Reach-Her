@@ -19,41 +19,71 @@
     <LinearLayout
         android:id="@+id/linear_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/gradStart"
+        android:layout_height="350dp"
         android:orientation="vertical"
         android:paddingBottom="20dp"
+        android:background="@color/likeBtnGray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
         tools:ignore="MissingConstraints">
 
-        <TextView
-            android:id="@+id/welcome_message"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="66dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:contentDescription="@string/login_logo_desc"
-            android:fontFamily="@font/product_sans_medium"
-            android:gravity="center"
-            android:paddingRight="10dp"
-            android:text="Welcome to Reach Her Digital"
-            android:textColor="@color/white"
-            android:textSize="36sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/register_logo" />
+        <ViewFlipper
+            android:id="@+id/viewflipper"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:flipInterval="3000"
+            android:autoStart="true">
 
         <ImageView
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_gravity="center"
-            android:src="@drawable/content_creator" />
+            android:id="@+id/imageView1"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:scaleType="center"/>
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:scaleType="center"/>
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:scaleType="center"/>
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:scaleType="center"/>
+
+        </ViewFlipper>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:id="@+id/img1"
+            android:visibility="invisible"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:id="@+id/img2"
+            android:visibility="invisible"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:id="@+id/img3"
+            android:visibility="invisible"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:id="@+id/img4"
+            android:visibility="invisible"/>
 
     </LinearLayout>
 
@@ -80,29 +110,28 @@
         tools:ignore="MissingConstraints">
 
         <ImageButton
-            android:id="@+id/drive_link_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_insert_link_black_24dp"
+            android:id="@+id/fileBtn"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/word"
             android:layout_marginEnd="30dp"
-            android:background="@drawable/image_layout"
-            android:layout_marginRight="30dp" />
+            android:background="@drawable/image_layout"/>
 
         <ImageButton
             android:id="@+id/imageBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_image_black_24dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/picture"
             android:layout_marginEnd="30dp"
             android:background="@drawable/image_layout"
             android:layout_marginRight="30dp" />
 
         <ImageButton
-            android:id="@+id/fileBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_insert_drive_file_black_24dp"
-            android:background="@drawable/image_layout"/>
+            android:id="@+id/drive_link_btn"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/video"
+            android:background="@drawable/image_layout" />
 
     </LinearLayout>
 
@@ -112,9 +141,9 @@
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:text="Drive"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:text="File"
         app:layout_constraintEnd_toStartOf="@+id/textView4"
         app:layout_constraintHorizontal_bias="0.669"
         app:layout_constraintStart_toStartOf="parent"
@@ -127,8 +156,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:text="Image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -142,7 +171,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:text="File"
+        android:text="Video"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.407"
         app:layout_constraintStart_toEndOf="@+id/textView4"

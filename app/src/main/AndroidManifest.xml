@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.reachskyline.reachher">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -13,26 +14,45 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".FetchDataActivity"></activity>
-        <activity android:name=".FileUploadActivity" />
-        <activity android:name=".ImageUploadActivity" />
-        <activity android:name=".DriveActivity" />
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".GroupChatActivity"></activity>
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
+        <activity android:name=".FetchFilesDataActivity" />
+        <activity android:name=".FetchImageDataActivity" />
+        <activity
+            android:name=".FetchDataActivity"
+            android:screenOrientation="fullSensor" />
+        <activity
+            android:name=".FileUploadActivity"
+            android:screenOrientation="fullSensor"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".ImageUploadActivity"
+            android:screenOrientation="fullSensor"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".DriveActivity"
+            android:screenOrientation="fullSensor" />
         <activity
             android:name=".SetUpActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="fullSensor" />
         <activity
             android:name=".RegisterActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="fullSensor" />
         <activity
             android:name=".LoginActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="fullSensor" />
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="fullSensor">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

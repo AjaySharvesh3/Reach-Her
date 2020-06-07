@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1041037166500",
+    "firebase_url": "enter your url",
+    "project_id": "enter project id",
+    "storage_bucket": "storage bucket"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1041037166500:android:64fcda983dc166a7",
+        "android_client_info": {
+          "package_name": "in.tvac.akshaye.lapitchat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1041037166500-qmsq4kjun0dbdrusjevegs1e56n3vt41.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "in.tvac.akshaye.lapitchat",
+            "certificate_hash": "c5ed5d6a9508031163c85b3b23431345698cb7a3"
+          }
+        },
+        {
+          "client_id": "1041037166500-jhclvbrv5ge58rseak6a8uf0sjsqlmlg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVVeq1CAo9xjotO00rgOPvaDfT2gs_0-I"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1041037166500-jhclvbrv5ge58rseak6a8uf0sjsqlmlg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

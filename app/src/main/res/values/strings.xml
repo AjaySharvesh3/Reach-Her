@@ -30,4 +30,9 @@
     <string name="about">About</string>
     <string name="upload_in_progress">Upload in progress</string>
     <string name="upload_history">Upload History</string>
+    <string name="phone">Phone</string>
+    <string name="drive_links">Drive Links</string>
+    <string name="set_your_bio">Set Your Bio</string>
+    <string name="your_core_strength">Your Core Strength</string>
+    <string name="your_location">Your Location</string>
 </resources>

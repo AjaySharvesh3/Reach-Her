@@ -1,115 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ImageUploadActivity">
+    android:fillViewport="true"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="0dp">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="64dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/image_logo" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Upload your image file"
-        android:textSize="20sp"
-        android:fontFamily="@font/product_sans_regular"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-    <EditText
-        android:id="@+id/nameEditText"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
-        android:background="@drawable/custon_edit_text_drive"
-        android:drawableEnd="@drawable/ic_short_text_black_24dp"
-        android:drawableRight="@drawable/ic_short_text_black_24dp"
-        android:ems="10"
-        android:fontFamily="@font/product_sans_medium"
-        android:hint="Image Title"
-        android:inputType="textMultiLine"
-        android:maxLines="4"
-        android:minLines="1"
-        android:padding="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/choseImageView" />
+        android:layout_height="match_parent"
+        tools:context=".ImageUploadActivity">
 
-    <EditText
-        android:id="@+id/descEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
-        android:background="@drawable/custon_edit_text_drive"
-        android:ems="10"
-        android:drawableEnd="@drawable/drive_link_drawable"
-        android:fontFamily="@font/product_sans_medium"
-        android:hint="Description of your image"
-        android:inputType="textPersonName"
-        android:padding="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameEditText"
-        android:drawableRight="@drawable/drive_link_drawable" />
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="102dp"
+            android:fontFamily="@font/product_sans_regular"
+            android:text="Upload your image file"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/imageUpload"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
-        android:background="@drawable/custom_button_upload"
-        android:text="Upload Image"
-        android:textColor="#fff"
-        android:fontFamily="@font/product_sans_bold"
-        android:textAllCaps="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/descEditText" />
+        <ImageButton
+            android:id="@+id/choseImageButton"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="26dp"
+            android:background="@drawable/image_layout"
+            android:src="@drawable/picture"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
-    <Button
-        android:id="@+id/choseImageButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/button_invisible_layout"
-        android:text="Tap me to choose your image"
-        android:textColor="@color/likeBtnGray"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
-    <ImageView
-        android:id="@+id/choseImageView"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/choseImageButton"
-        tools:ignore="MissingConstraints" />
+        <EditText
+            android:id="@+id/titleEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:background="@drawable/custon_edit_text_drive"
+            android:drawableEnd="@drawable/ic_short_text_black_24dp"
+            android:drawableRight="@drawable/ic_short_text_black_24dp"
+            android:ems="10"
+            android:fontFamily="@font/product_sans_medium"
+            android:hint="Image Title"
+            android:inputType="textCapWords"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/choseImageView" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <EditText
+            android:id="@+id/descEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:background="@drawable/custon_edit_text_drive"
+            android:drawableEnd="@drawable/ic_short_text_black_24dp"
+            android:drawableRight="@drawable/drive_link_drawable"
+            android:ems="10"
+            android:fontFamily="@font/product_sans_medium"
+            android:hint="Description of your image"
+            android:inputType="textCapSentences"
+            android:maxLines="4"
+            android:minLines="1"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleEditText" />
+
+        <Button
+            android:id="@+id/imageUpload"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:background="@drawable/custom_button_upload"
+            android:fontFamily="@font/product_sans_bold"
+            android:text="Upload Image"
+            android:textAllCaps="false"
+            android:textColor="#fff"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/descEditText" />
+
+        <ImageView
+            android:id="@+id/choseImageView"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="26dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/choseImageButton"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="24dp"
+            android:gravity="center_horizontal"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:text="Note: Pick the image, then enter valid title for the image to upload. And give us short description of your image."
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageUpload" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
