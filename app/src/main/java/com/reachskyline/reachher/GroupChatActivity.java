@@ -7,9 +7,11 @@ import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -21,6 +23,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -51,95 +54,16 @@ import hani.momanii.supernova_emoji_library.Helper.EmojiconEditText;
 
 public class GroupChatActivity extends AppCompatActivity {
 
-    private static int SIGN_IN_REQUEST_CODE = 1;
-    private FirebaseRecyclerAdapter<ChatMessage,ChatViewHolder> adapter;
-    RelativeLayout activity_main;
-
-    //Add Emojicon
-    EmojiconEditText emojiconEditText;
-    ImageView emojiButton,submitButton;
-    EmojIconActions emojIconActions;
-
-    RecyclerView listOfMessage;
-    Query query;
-    FirebaseRecyclerOptions<ChatMessage> options;
-
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group_chat);
 
-        activity_main = (RelativeLayout)findViewById(R.id.activity_main);
-        listOfMessage = (RecyclerView) findViewById(R.id.list_of_message);
-        listOfMessage.setLayoutManager(new LinearLayoutManager(this));
+        Toolbar chatRoomToolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(chatRoomToolbar);
+        getSupportActionBar().setTitle("Community Chat Room");
 
-        query = FirebaseDatabase.getInstance().getReference();
-        options = new FirebaseRecyclerOptions.Builder<ChatMessage>()
-                .setQuery(query,ChatMessage.class)
-                .build();
-        //Add Emoji
-        emojiButton = (ImageView)findViewById(R.id.emoji_button);
-        submitButton = (ImageView)findViewById(R.id.submit_button);
-        emojiconEditText = (EmojiconEditText)findViewById(R.id.emojicon_edit_text);
-        /*emojIconActions = new EmojIconActions(getApplicationContext(),activity_main,emojiButton,emojiconEditText);
-        emojIconActions.ShowEmojicon();*/
-
-        submitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FirebaseDatabase.getInstance().getReference().push().setValue(new ChatMessage(emojiconEditText.getText().toString(),
-                        FirebaseAuth.getInstance().getCurrentUser().getEmail()));
-                emojiconEditText.setText("");
-                emojiconEditText.requestFocus();
-            }
-        });
-
-        //Check if not sign-in then navigate Signin page
-        if(FirebaseAuth.getInstance().getCurrentUser() == null)
-        {
-            startActivityForResult(AuthUI.getInstance().createSignInIntentBuilder().build(),SIGN_IN_REQUEST_CODE);
-        }
-        else
-        {
-            Snackbar.make(activity_main,"Welcome "+FirebaseAuth.getInstance().getCurrentUser().getEmail(),Snackbar.LENGTH_SHORT).show();
-            //Load content
-            displayChatMessage();
-        }
     }
 
-    private void displayChatMessage() {
-
-
-        adapter = new FirebaseRecyclerAdapter<ChatMessage, ChatViewHolder>(options) {
-            @Override
-            protected void onBindViewHolder(@NonNull ChatViewHolder holder, int position, @NonNull ChatMessage model) {
-                Log.d("Hiiiiiiiii", ""+holder);
-                holder.messageText.setText(model.getMessageText());
-                holder.messageUser.setText(model.getMessageUser());
-                holder.messageTime.setText(DateFormat.format("dd-MM-yyyy (HH:mm:ss)", model.getMessageTime()));
-
-            }
-
-            @NonNull
-            @Override
-            public ChatViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-                return new ChatViewHolder(LayoutInflater.from(GroupChatActivity.this)
-                        .inflate(R.layout.item_messages,viewGroup,false));
-            }
-        };
-
-
-        listOfMessage.setAdapter(adapter);
-    }
-
-    private class ChatViewHolder extends RecyclerView.ViewHolder {
-        TextView messageText, messageUser, messageTime;
-
-        public ChatViewHolder(@NonNull View itemView) {
-            super(itemView);
-            messageText = (BubbleTextView) itemView.findViewById(R.id.message_text);
-            messageUser = (TextView) itemView.findViewById(R.id.message_user);
-            messageTime = (TextView) itemView.findViewById(R.id.message_time);
-        }
-    }
 }
