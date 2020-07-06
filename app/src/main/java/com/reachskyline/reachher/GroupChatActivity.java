@@ -63,10 +63,12 @@ public class GroupChatActivity extends AppCompatActivity{
     private ImageButton SendMessageButton;
     private EditText userMessageInput;
     private ScrollView mScrollView;
-   private FirebaseAuth mAuth;
-   private String currentUseremail, currentDate, currentTime;
+    private FirebaseAuth mAuth;
+    private String currentUseremail, currentDate, currentTime;
     private DatabaseReference ChatRoomRef,GroupMessageKeyRef;
     private FirebaseDatabase database;
+    private FirebaseUser user;
+    private TextView displayTextMessages;
 
 
 
@@ -78,9 +80,9 @@ public class GroupChatActivity extends AppCompatActivity{
         mAuth=FirebaseAuth.getInstance();
         database=FirebaseDatabase.getInstance();
         ChatRoomRef=database.getReference("ChatRoom");
+        user=FirebaseAuth.getInstance().getCurrentUser();
 
-        currentUseremail=mAuth.getCurrentUser().getEmail();
-
+        currentUseremail=user.getEmail();
 
         Toolbar chatRoomToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(chatRoomToolbar);
@@ -117,7 +119,7 @@ public class GroupChatActivity extends AppCompatActivity{
             {
                 if (dataSnapshot.exists())
                 {
-                   // DisplayMessages(dataSnapshot);
+                    DisplayMessages(dataSnapshot);
                 }
             }
 
@@ -126,7 +128,7 @@ public class GroupChatActivity extends AppCompatActivity{
             {
                 if (dataSnapshot.exists())
                 {
-                 //   DisplayMessages(dataSnapshot);
+                    DisplayMessages(dataSnapshot);
                 }
             }
 
@@ -155,7 +157,7 @@ public class GroupChatActivity extends AppCompatActivity{
     {
         SendMessageButton = (ImageButton) findViewById(R.id.send_message_button);
         userMessageInput = (EditText) findViewById(R.id.input_group_message);
-
+        displayTextMessages = (TextView) findViewById(R.id.group_chat_text_display);
         mScrollView = (ScrollView) findViewById(R.id.my_scroll_view);
     }
 
@@ -186,7 +188,7 @@ public class GroupChatActivity extends AppCompatActivity{
             ChatRoomRef.updateChildren(groupMessageKey);
 
             GroupMessageKeyRef = ChatRoomRef.child(messagekEY);
-            //currentUserName=mAuth.getCurrentUser().getEmail();
+
 
 
             HashMap<String, Object> messageInfoMap = new HashMap<>();
@@ -199,7 +201,27 @@ public class GroupChatActivity extends AppCompatActivity{
     }
 
 
+    private void DisplayMessages(DataSnapshot dataSnapshot)
+    {
+        Iterator iterator = dataSnapshot.getChildren().iterator();
+
+        while(iterator.hasNext())
+        {
+            String chatDate = (String) ((DataSnapshot)iterator.next()).getValue();
+            String chatEmail = (String) ((DataSnapshot)iterator.next()).getValue();
+            String chatMessage = (String) ((DataSnapshot)iterator.next()).getValue();
+            String chatTime = (String) ((DataSnapshot)iterator.next()).getValue();
+
+            displayTextMessages.append(chatEmail+"\n"+ chatMessage + "\n" + chatTime + "     " + chatDate + "\n\n\n");
+
+            mScrollView.fullScroll(ScrollView.FOCUS_DOWN);
+        }
+    }
 }
+
+
+
+
 
 
 
